@@ -23,23 +23,23 @@ const NewsSection = (request) => {
             </Row>
             <Row>
                 {newsSection.length > 1 ?
-                    newsSection.map((data, key) =>
-                        data.image === "" || data.image === null ? null :
+                    newsSection.map((article, key) =>
+                        article.urlToImage === "" || article.urlToImage === null ? null :
                             <Col key={key} md={{ span: 8 }} sm={{ span: 24 }} >
-                                <Card onClick={() => window.open(data.url, "_blank")} type="inner" hoverable="true"
-                                    style={{ width: 380, marginBottom: 20 }}
-                                    cover={data.image === "" || data.image === null ? null :
+                                <Card onClick={() => window.open(article.url, "_blank")} type="inner" hoverable="true"
+                                    style={{ width: 350, marginBottom:10 }}
+                                    cover={article.urlToImage === "" || article.urlToImage === null ? null :
                                         <img
-                                            alt={data.title}
-                                            src={data.image}
+                                            alt={article.title}
+                                            src={article.urlToImage}
                                         />
                                     }
-                                    title={data.source === "" || data.source=== null ? null : "Source: " + ReactHtmlParser(data.source)}
-                                    extra={data.author === "" || data.author === null ? null : "Author: " + ReactHtmlParser(data.author)}
+                                    title={article.source.name === "" || article.source.name=== null ? null : "Source: " + ReactHtmlParser(article.source.name)}
+                                    extra={article.author === "" || article.author === null ? null : "Author: " + ReactHtmlParser(article.author)}
                                 >
-                                    <h3>{ReactHtmlParser(data.title)}</h3>
+                                    <h3>{ReactHtmlParser(article.title)}</h3>
                                     <Meta
-                                        description={ReactHtmlParser(data.description)}
+                                        description={ReactHtmlParser(article.description)}
                                     />
                                 </Card>
                             </Col>

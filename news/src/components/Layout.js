@@ -17,7 +17,7 @@ const { Header, Sider, Content } = Layout;
 class MainLayout extends React.Component {
   state = {
     collapsed: false,
-    title: [],
+    source: [],
     homePage: true,
     query: '',
   };
@@ -29,9 +29,9 @@ class MainLayout extends React.Component {
   };
 
   async componentDidMount() {
-    const title= await fetchSources();
+    const source= await fetchSources();
 
-    this.setState({ title});
+    this.setState({ source});
   }
 
   loadNews(query) {
@@ -50,7 +50,7 @@ class MainLayout extends React.Component {
             <Menu.Item onClick={() => this.setState({ homePage: true })} key="-1" icon={<StockOutlined />}>
               Top News
             </Menu.Item>
-            {/* {this.state.title.map((titl) =>
+            {/* {this.state.source.map((source) =>
               <Menu.Item onClick={() => this.loadNews(source.name)} key={source.name}>
                 {source.name}
               </Menu.Item>
@@ -71,10 +71,13 @@ class MainLayout extends React.Component {
               padding: 24,
               paddingRight: 0,
               minHeight: 280,
+                 overflow: 'auto',
+               
+              
             }}
           >
             <Suspense fallback={<h1 style={{ fontSize: '30px' }}>Loading...</h1>}>
-              {this.state.homePage === true ? <News /> : <NewsSection category='everything' query={'q=' + this.state.query} topHeading={this.state.query} results='100' />}
+              {this.state.homePage === true ? <News /> : <NewsSection category='everything' query={'q=' + this.state.query} topHeading={this.state.query} results='20' />}
             </Suspense>
           </Content>
         </Layout>

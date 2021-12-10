@@ -1,17 +1,17 @@
 // import Title from 'antd/lib/skeleton/Title';
 import axios from 'axios';
 
-const api = 'b825f2dad23816419b700bbf07aa6a0a'
-const url = 'http://api.mediastack.com/v1/news';
+// const api = 'b825f2dad23816419b700bbf07aa6a0a'
+// const url = 'http://api.mediastack.com/v1/news';
 
 export const fetchSources = async () => {
     // const requestSource = `sources?apiKey=`;
     try {
         
-        const { data: { title } } = await axios.get(`https://api.mediastack.com/v1/news?access_key=b825f2dad23816419b700bbf07aa6a0a&categories=general&countries=ni`);
+        const { data: { sources } } = await axios.get(`https://saurav.tech/NewsAPI/top-headlines/category/general/us.json`);
         
   
-        return title.map((titl)=> titl);
+        return sources.map((source)=> source);
     } catch (error) {
         return error;
     }
@@ -19,9 +19,9 @@ export const fetchSources = async () => {
 
 export const fetchNews = async (request) => {
     try {
-        const { data: { data } } = await axios.get(`${url}?${request.category}&access_key=${api}&countries=ng,us`);
-        
-        return data.map((dat) => (dat));
+        const { data: { articles } } = await axios.get(`https://saurav.tech/NewsAPI/everything/cnn.json`);
+        console.log(articles)
+        return articles.map((article) => (article));
     } catch (error) {
         return error;
     }
